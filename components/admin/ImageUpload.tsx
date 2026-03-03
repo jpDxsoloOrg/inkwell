@@ -36,22 +36,26 @@ export function ImageUpload({
           }),
         });
 
+        const data = await res.json();
         if (!res.ok) {
-          const data = await res.json();
           throw new Error(data.error || "Failed to get upload URL");
         }
 
-        const { presignedUrl, publicUrl } = await res.json();
+        const { presignedUrl, publicUrl } = data;
 
         // Upload to S3
         const uploadRes = await fetch(presignedUrl, {
           method: "PUT",
           body: file,
-          headers: { "Content-Type": file.type },
+          headers: {
+            "Content-Type": file.type,
+            "Content-Length": String(file.size),
+          },
         });
 
         if (!uploadRes.ok) {
-          throw new Error("Upload failed");
+          const errorText = await uploadRes.text().catch(() => "");
+          throw new Error(`Upload failed (${uploadRes.status}): ${errorText.slice(0, 200)}`);
         }
 
         onChange(publicUrl);
