@@ -16,7 +16,15 @@ export function PostActions({ postId, published }: PostActionsProps) {
 
   async function togglePublish() {
     setLoading(true);
-    await fetch(`/api/posts/${postId}/publish`, { method: "PATCH" });
+    try {
+      const res = await fetch(`/api/posts/${postId}/publish`, { method: "PATCH" });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(`Failed to toggle publish: ${data.error || res.statusText}`);
+      }
+    } catch (err) {
+      alert(`Error: ${err instanceof Error ? err.message : "Unknown error"}`);
+    }
     setLoading(false);
     router.refresh();
   }
@@ -24,7 +32,15 @@ export function PostActions({ postId, published }: PostActionsProps) {
   async function deletePost() {
     if (!confirm("Are you sure you want to delete this post?")) return;
     setLoading(true);
-    await fetch(`/api/posts/${postId}`, { method: "DELETE" });
+    try {
+      const res = await fetch(`/api/posts/${postId}`, { method: "DELETE" });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(`Failed to delete: ${data.error || res.statusText}`);
+      }
+    } catch (err) {
+      alert(`Error: ${err instanceof Error ? err.message : "Unknown error"}`);
+    }
     setLoading(false);
     router.refresh();
   }
