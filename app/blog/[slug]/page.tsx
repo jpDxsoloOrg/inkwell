@@ -120,7 +120,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Content with TOC */}
         <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-10">
           <div className="min-w-0">
-            <TableOfContents content={post.content} />
+            <div className="lg:hidden">
+              <TableOfContents content={post.content} />
+            </div>
             <MdxContent source={post.content} />
           </div>
           <div className="hidden lg:block">

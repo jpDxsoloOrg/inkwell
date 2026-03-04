@@ -47,6 +47,15 @@ html.dark [data-rehype-pretty-code-figure] pre {
   @apply bg-neutral-900;
 }
 
+/* Map shiki dual-theme CSS variables to actual colors */
+[data-rehype-pretty-code-figure] span {
+  color: var(--shiki-light);
+}
+
+html.dark [data-rehype-pretty-code-figure] span {
+  color: var(--shiki-dark);
+}
+
 /* Anchor link styling */
 .anchor-link {
   @apply no-underline;
