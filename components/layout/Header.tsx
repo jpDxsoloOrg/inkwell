@@ -33,7 +33,7 @@ export function Header() {
             href="/"
             className="text-xl font-bold tracking-tight text-neutral-900 dark:text-white"
           >
-            Inkwell
+            JP
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">

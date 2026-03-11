@@ -61,7 +61,7 @@ export default function AdminLayout({
             href="/admin"
             className="text-lg font-bold text-accent-600 dark:text-accent-400"
           >
-            Inkwell Admin
+            JP Admin
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}

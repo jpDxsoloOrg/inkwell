@@ -55,7 +55,7 @@ export async function PUT(request: NextRequest) {
   } else {
     config = await prisma.siteConfig.create({
       data: {
-        siteName: siteName ?? "Inkwell",
+        siteName: siteName ?? "JP",
         siteDescription: siteDescription ?? "",
         ownerName: ownerName ?? "",
         ownerTitle: ownerTitle ?? "",

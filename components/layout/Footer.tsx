@@ -17,7 +17,7 @@ export function Footer() {
       <Container className="py-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-neutral-500 dark:text-neutral-400">
-            &copy; {currentYear} Inkwell. All rights reserved.
+            &copy; {currentYear} JP. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {socialLinks.map((link) => (

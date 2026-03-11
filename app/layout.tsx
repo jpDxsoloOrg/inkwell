@@ -17,8 +17,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Inkwell | Developer Portfolio",
-    template: "%s | Inkwell",
+    default: "JP | Developer Portfolio",
+    template: "%s | JP",
   },
   description:
     "A developer portfolio showcasing projects, blog posts, and professional experience.",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Inkwell",
+    siteName: "JP",
   },
   twitter: {
     card: "summary_large_image",

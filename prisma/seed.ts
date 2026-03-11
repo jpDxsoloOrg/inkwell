@@ -91,7 +91,7 @@ async function main() {
   // Create site config
   await prisma.siteConfig.create({
     data: {
-      siteName: "Inkwell",
+      siteName: "JP",
       siteDescription: "A developer portfolio showcasing projects, blog posts, and professional experience.",
       ownerName: "Alex Morgan",
       ownerTitle: "Senior Full-Stack Developer",

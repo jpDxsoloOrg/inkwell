@@ -25,7 +25,7 @@ export async function GET() {
     },
   });
 
-  const siteName = config?.siteName ?? "Inkwell";
+  const siteName = config?.siteName ?? "JP";
   const siteDesc = config?.siteDescription ?? "Developer Portfolio";
 
   const items = posts

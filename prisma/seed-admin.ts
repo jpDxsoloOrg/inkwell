@@ -31,7 +31,7 @@ async function main() {
   if (!existingConfig) {
     await prisma.siteConfig.create({
       data: {
-        siteName: "Inkwell",
+        siteName: "JP",
         siteDescription: "A developer portfolio and blog",
         ownerName: "Your Name",
         ownerTitle: "Full-Stack Developer",
