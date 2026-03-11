@@ -44,11 +44,11 @@ export default async function HomePage() {
     // Database may be waking up (cold start) — render with defaults
   }
 
-  const ownerName = config?.ownerName ?? "Developer";
+  const ownerName = config?.ownerName ?? "JP";
   const ownerTitle = config?.ownerTitle ?? "Full-Stack Developer";
   const ownerBio =
     config?.ownerBio ??
-    "I build things for the web. Welcome to my corner of the internet where I share my projects, thoughts on software engineering, and lessons learned along the way.";
+    "Full-Stack Developer specializing in serverless AWS architecture, React, and TypeScript. I build scalable web applications from cloud infrastructure to polished UI.";
 
   return (
     <>

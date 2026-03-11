@@ -93,13 +93,13 @@ async function main() {
     data: {
       siteName: "JP",
       siteDescription: "A developer portfolio showcasing projects, blog posts, and professional experience.",
-      ownerName: "Alex Morgan",
-      ownerTitle: "Senior Full-Stack Developer",
-      ownerBio: "I build scalable web applications and cloud infrastructure. With 8+ years of experience shipping products used by millions, I write about software engineering, architecture, and the tools that make developers more productive.",
-      githubUrl: "https://github.com/alexmorgan",
-      linkedinUrl: "https://linkedin.com/in/alexmorgan",
-      twitterUrl: "https://twitter.com/alexmorgan",
-      email: "alex@example.com",
+      ownerName: "JP",
+      ownerTitle: "Full-Stack Developer",
+      ownerBio: "Full-Stack Developer specializing in serverless AWS architecture, React, and TypeScript. I build scalable web applications from cloud infrastructure to polished UI.",
+      githubUrl: "https://github.com/jpDxsolo",
+      linkedinUrl: "https://linkedin.com/in/jp",
+      twitterUrl: null,
+      email: null,
     },
   });
   console.log("Created site config");

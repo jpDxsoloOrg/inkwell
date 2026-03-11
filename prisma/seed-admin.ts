@@ -33,9 +33,9 @@ async function main() {
       data: {
         siteName: "JP",
         siteDescription: "A developer portfolio and blog",
-        ownerName: "Your Name",
+        ownerName: "JP",
         ownerTitle: "Full-Stack Developer",
-        ownerBio: "Welcome to my portfolio. Update this in the admin settings.",
+        ownerBio: "Full-Stack Developer specializing in serverless AWS architecture, React, and TypeScript. I build scalable web applications from cloud infrastructure to polished UI.",
       },
     });
     console.log("Created default site config");
