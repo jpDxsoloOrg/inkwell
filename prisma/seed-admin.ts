@@ -36,6 +36,7 @@ async function main() {
         ownerName: "JP",
         ownerTitle: "Full-Stack Developer",
         ownerBio: "Full-Stack Developer specializing in serverless AWS architecture, React, and TypeScript. I build scalable web applications from cloud infrastructure to polished UI.",
+        careerStartDate: new Date("2021-01-01"),
       },
     });
     console.log("Created default site config");

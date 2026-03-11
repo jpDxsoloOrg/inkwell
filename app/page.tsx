@@ -50,6 +50,13 @@ export default async function HomePage() {
     config?.ownerBio ??
     "Full-Stack Developer specializing in serverless AWS architecture, React, and TypeScript. I build scalable web applications from cloud infrastructure to polished UI.";
 
+  const yearsOfExperience = config?.careerStartDate
+    ? Math.floor(
+        (Date.now() - new Date(config.careerStartDate).getTime()) /
+          (365.25 * 24 * 60 * 60 * 1000)
+      )
+    : null;
+
   return (
     <>
       {/* Hero */}
@@ -65,6 +72,12 @@ export default async function HomePage() {
             </h1>
             <p className="mt-2 text-xl font-medium text-accent-600 dark:text-accent-400">
               {ownerTitle}
+              {yearsOfExperience !== null && (
+                <span className="text-neutral-400 dark:text-neutral-500">
+                  {" "}
+                  · {yearsOfExperience}+ years
+                </span>
+              )}
             </p>
             <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
               {ownerBio}

@@ -14,6 +14,7 @@ interface SiteConfigForm {
   linkedinUrl: string;
   twitterUrl: string;
   email: string;
+  careerStartDate: string;
 }
 
 const emptyForm: SiteConfigForm = {
@@ -27,6 +28,7 @@ const emptyForm: SiteConfigForm = {
   linkedinUrl: "",
   twitterUrl: "",
   email: "",
+  careerStartDate: "",
 };
 
 export default function AdminSettingsPage() {
@@ -51,6 +53,9 @@ export default function AdminSettingsPage() {
             linkedinUrl: data.linkedinUrl ?? "",
             twitterUrl: data.twitterUrl ?? "",
             email: data.email ?? "",
+            careerStartDate: data.careerStartDate
+              ? new Date(data.careerStartDate).toISOString().split("T")[0]
+              : "",
           });
         }
       })
@@ -157,6 +162,12 @@ export default function AdminSettingsPage() {
             value={form.avatarUrl}
             onChange={(v) => setForm({ ...form, avatarUrl: v })}
             placeholder="https://..."
+          />
+          <FormField
+            label="Career Start Date"
+            value={form.careerStartDate}
+            onChange={(v) => setForm({ ...form, careerStartDate: v })}
+            type="date"
           />
         </fieldset>
 

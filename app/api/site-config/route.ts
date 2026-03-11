@@ -20,6 +20,7 @@ export async function PUT(request: NextRequest) {
     linkedinUrl,
     twitterUrl,
     email,
+    careerStartDate,
   } = body as {
     siteName?: string;
     siteDescription?: string;
@@ -31,6 +32,7 @@ export async function PUT(request: NextRequest) {
     linkedinUrl?: string;
     twitterUrl?: string;
     email?: string;
+    careerStartDate?: string | null;
   };
 
   const existing = await prisma.siteConfig.findFirst();
@@ -50,6 +52,9 @@ export async function PUT(request: NextRequest) {
         ...(linkedinUrl !== undefined && { linkedinUrl: linkedinUrl || null }),
         ...(twitterUrl !== undefined && { twitterUrl: twitterUrl || null }),
         ...(email !== undefined && { email: email || null }),
+        ...(careerStartDate !== undefined && {
+          careerStartDate: careerStartDate ? new Date(careerStartDate) : null,
+        }),
       },
     });
   } else {
@@ -65,6 +70,7 @@ export async function PUT(request: NextRequest) {
         linkedinUrl: linkedinUrl || null,
         twitterUrl: twitterUrl || null,
         email: email || null,
+        careerStartDate: careerStartDate ? new Date(careerStartDate) : null,
       },
     });
   }

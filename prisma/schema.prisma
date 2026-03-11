@@ -94,6 +94,7 @@ model SiteConfig {
   linkedinUrl     String?
   twitterUrl      String?
   email           String?
+  careerStartDate DateTime?
   updatedAt       DateTime @updatedAt
 
   @@map("site_configs")

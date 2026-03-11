@@ -100,6 +100,7 @@ async function main() {
       linkedinUrl: "https://linkedin.com/in/jp",
       twitterUrl: null,
       email: null,
+      careerStartDate: new Date("2021-01-01"),
     },
   });
   console.log("Created site config");
