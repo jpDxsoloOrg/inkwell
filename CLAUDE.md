@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Inkwell** is a modern WordPress clone built with Next.js, TypeScript, PostgreSQL, and Prisma. The project is in early development — see GitHub Issues for the roadmap.
+**DxPress** is a modern WordPress clone built with Next.js, TypeScript, PostgreSQL, and Prisma. The project is in early development — see GitHub Issues for the roadmap.
 
 ## Tech Stack
 

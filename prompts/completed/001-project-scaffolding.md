@@ -52,7 +52,7 @@ Thoroughly analyze the needs of a developer portfolio with database-backed conte
    Use many-to-many for Post ↔ Tag. Add appropriate indexes on slug fields.
 
 4. **Database setup**:
-   - Create a `docker-compose.yml` with PostgreSQL 16 service (port 5432, db name `inkwell`, user `inkwell`, password `inkwell_dev`)
+   - Create a `docker-compose.yml` with PostgreSQL 16 service (port 5432, db name `dxpress`, user `dxpress`, password `dxpress_dev`)
    - Create `.env.example` with all required env vars (DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, AWS S3 placeholders)
    - Add `.env` to .gitignore (should already be there)
 

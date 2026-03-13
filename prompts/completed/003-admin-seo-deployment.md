@@ -211,7 +211,7 @@ Before declaring complete, verify:
 11. SEO metadata renders correctly (check with View Source)
 12. 404 page renders for invalid routes
 13. All API routes return 401 for unauthenticated requests
-14. Docker build succeeds: `docker build -t inkwell .`
+14. Docker build succeeds: `docker build -t dxpress .`
 </verification>
 
 <success_criteria>

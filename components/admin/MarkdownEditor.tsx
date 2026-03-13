@@ -45,7 +45,7 @@ export function MarkdownEditor({
   // Auto-save to localStorage
   useEffect(() => {
     if (value) {
-      localStorage.setItem("inkwell-editor-draft", value);
+      localStorage.setItem("dxpress-editor-draft", value);
     }
   }, [value]);
 

@@ -1,4 +1,4 @@
-# Inkwell
+# DxPress
 
 A modern WordPress clone built with Next.js, TypeScript, PostgreSQL, and Prisma.
 

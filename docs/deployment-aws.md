@@ -1,6 +1,6 @@
-# Deploying Inkwell to AWS
+# Deploying DxPress to AWS
 
-This guide covers deploying Inkwell to AWS using ECS Fargate with RDS PostgreSQL and S3 for image storage.
+This guide covers deploying DxPress to AWS using ECS Fargate with RDS PostgreSQL and S3 for image storage.
 
 ## Prerequisites
 
@@ -20,11 +20,11 @@ This guide covers deploying Inkwell to AWS using ECS Fargate with RDS PostgreSQL
 
 ```bash
 aws rds create-db-instance \
-  --db-instance-identifier inkwell-db \
+  --db-instance-identifier dxpress-db \
   --db-instance-class db.t3.micro \
   --engine postgres \
   --engine-version 16 \
-  --master-username inkwell \
+  --master-username dxpress \
   --master-user-password <STRONG_PASSWORD> \
   --allocated-storage 20 \
   --publicly-accessible \
@@ -32,22 +32,22 @@ aws rds create-db-instance \
 ```
 
 Note the endpoint once created. Your DATABASE_URL will be:
-`postgresql://inkwell:<PASSWORD>@<RDS_ENDPOINT>:5432/inkwell?schema=public`
+`postgresql://dxpress:<PASSWORD>@<RDS_ENDPOINT>:5432/dxpress?schema=public`
 
 ## Step 2: Create S3 Bucket
 
 ```bash
-aws s3 mb s3://inkwell-uploads-prod --region us-east-1
+aws s3 mb s3://dxpress-uploads-prod --region us-east-1
 
 # Set bucket policy for public read on uploads
-aws s3api put-bucket-policy --bucket inkwell-uploads-prod --policy '{
+aws s3api put-bucket-policy --bucket dxpress-uploads-prod --policy '{
   "Version": "2012-10-17",
   "Statement": [{
     "Sid": "PublicRead",
     "Effect": "Allow",
     "Principal": "*",
     "Action": "s3:GetObject",
-    "Resource": "arn:aws:s3:::inkwell-uploads-prod/uploads/*"
+    "Resource": "arn:aws:s3:::dxpress-uploads-prod/uploads/*"
   }]
 }'
 ```
@@ -56,17 +56,17 @@ aws s3api put-bucket-policy --bucket inkwell-uploads-prod --policy '{
 
 ```bash
 # Create ECR repository
-aws ecr create-repository --repository-name inkwell
+aws ecr create-repository --repository-name dxpress
 
 # Login to ECR
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
 
 # Build the image
-docker build -t inkwell .
+docker build -t dxpress .
 
 # Tag and push
-docker tag inkwell:latest <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/inkwell:latest
-docker push <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/inkwell:latest
+docker tag dxpress:latest <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dxpress:latest
+docker push <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dxpress:latest
 ```
 
 ## Step 4: Create ECS Task Definition
@@ -77,8 +77,8 @@ Create a task definition with these environment variables:
 |----------|-------|
 | `DATABASE_URL` | Your RDS connection string |
 | `NEXTAUTH_SECRET` | A strong random secret (use `openssl rand -base64 32`) |
-| `NEXTAUTH_URL` | Your production URL (e.g., `https://inkwell.example.com`) |
-| `S3_BUCKET` | `inkwell-uploads-prod` |
+| `NEXTAUTH_URL` | Your production URL (e.g., `https://dxpress.example.com`) |
+| `S3_BUCKET` | `dxpress-uploads-prod` |
 | `S3_REGION` | `us-east-1` |
 | `S3_ACCESS_KEY` | IAM user access key with S3 write permissions |
 | `S3_SECRET_KEY` | IAM user secret key |
@@ -91,11 +91,11 @@ Before starting the service, run Prisma migrations:
 
 ```bash
 # From your local machine with DATABASE_URL pointing to RDS
-DATABASE_URL="postgresql://inkwell:<PASSWORD>@<RDS_ENDPOINT>:5432/inkwell?schema=public" \
+DATABASE_URL="postgresql://dxpress:<PASSWORD>@<RDS_ENDPOINT>:5432/dxpress?schema=public" \
   npx prisma db push
 
 # Seed the admin user
-DATABASE_URL="postgresql://inkwell:<PASSWORD>@<RDS_ENDPOINT>:5432/inkwell?schema=public" \
+DATABASE_URL="postgresql://dxpress:<PASSWORD>@<RDS_ENDPOINT>:5432/dxpress?schema=public" \
   npx ts-node --compiler-options '{"module":"CommonJS"}' prisma/seed-admin.ts
 ```
 
@@ -118,10 +118,10 @@ Use ACM to create a certificate for your domain and attach it to the ALB listene
 ## Environment Variables Summary
 
 ```env
-DATABASE_URL=postgresql://inkwell:<PASSWORD>@<RDS_ENDPOINT>:5432/inkwell?schema=public
+DATABASE_URL=postgresql://dxpress:<PASSWORD>@<RDS_ENDPOINT>:5432/dxpress?schema=public
 NEXTAUTH_SECRET=<RANDOM_SECRET>
 NEXTAUTH_URL=https://your-domain.com
-S3_BUCKET=inkwell-uploads-prod
+S3_BUCKET=dxpress-uploads-prod
 S3_REGION=us-east-1
 S3_ACCESS_KEY=<IAM_ACCESS_KEY>
 S3_SECRET_KEY=<IAM_SECRET_KEY>
@@ -132,8 +132,8 @@ S3_SECRET_KEY=<IAM_SECRET_KEY>
 To deploy updates:
 
 ```bash
-docker build -t inkwell .
-docker tag inkwell:latest <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/inkwell:latest
-docker push <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/inkwell:latest
-aws ecs update-service --cluster inkwell --service inkwell --force-new-deployment
+docker build -t dxpress .
+docker tag dxpress:latest <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dxpress:latest
+docker push <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dxpress:latest
+aws ecs update-service --cluster dxpress --service dxpress --force-new-deployment
 ```

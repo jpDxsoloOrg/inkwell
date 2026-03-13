@@ -1,16 +1,16 @@
 export const projectsData = [
   {
-    title: "Inkwell",
-    slug: "inkwell",
+    title: "DxPress",
+    slug: "dxpress",
     description: "A modern developer portfolio and blog platform built with Next.js 14, Prisma, and PostgreSQL. Features MDX rendering with syntax highlighting, dark mode, and a full admin panel.",
     techStack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
-    githubUrl: "https://github.com/username/inkwell",
-    liveUrl: "https://inkwell.dev",
+    githubUrl: "https://github.com/username/dxpress",
+    liveUrl: "https://dxpress.dev",
     featured: true,
     sortOrder: 1,
     content: `## Overview
 
-Inkwell is a full-featured developer portfolio platform that I built to showcase my work and writing. It features server-side rendering, MDX blog posts with syntax highlighting, and a complete admin panel for content management.
+DxPress is a full-featured developer portfolio platform that I built to showcase my work and writing. It features server-side rendering, MDX blog posts with syntax highlighting, and a complete admin panel for content management.
 
 ## Key Features
 

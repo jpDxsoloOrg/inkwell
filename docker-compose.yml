@@ -5,9 +5,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: inkwell
-      POSTGRES_USER: inkwell
-      POSTGRES_PASSWORD: inkwell_dev
+      POSTGRES_DB: dxpress
+      POSTGRES_USER: dxpress
+      POSTGRES_PASSWORD: dxpress_dev
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -32,8 +32,8 @@ services:
       /bin/sh -c "
       sleep 3;
       mc alias set myminio http://minio:9000 minioadmin minioadmin;
-      mc mb --ignore-existing myminio/inkwell-uploads;
-      mc anonymous set download myminio/inkwell-uploads;
+      mc mb --ignore-existing myminio/dxpress-uploads;
+      mc anonymous set download myminio/dxpress-uploads;
       exit 0;
       "
 
