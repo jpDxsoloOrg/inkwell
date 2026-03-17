@@ -56,9 +56,9 @@ html.dark [data-rehype-pretty-code-figure] span {
   color: var(--shiki-dark);
 }
 
-/* Anchor link styling */
+/* Anchor link styling - headings should inherit text color, not accent */
 .anchor-link {
-  @apply no-underline;
+  @apply no-underline text-inherit;
 }
 
 .anchor-link:hover {

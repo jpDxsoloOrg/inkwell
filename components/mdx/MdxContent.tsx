@@ -17,7 +17,7 @@ const prettyCodeOptions = {
     light: "github-light",
   },
   keepBackground: false,
-  defaultLang: "plaintext",
+  defaultLang: { block: "plaintext" },
 };
 
 export async function MdxContent({ source, className }: MdxContentProps) {

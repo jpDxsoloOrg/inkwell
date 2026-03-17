@@ -103,7 +103,7 @@ export function getMdxComponents(): Record<string, React.ComponentType<Record<st
     pre: CustomPre as React.ComponentType<Record<string, unknown>>,
     code: CustomCode as React.ComponentType<Record<string, unknown>>,
     h1: ((props: Record<string, unknown>) => (
-      <h1 className="mb-4 mt-10 text-3xl font-bold tracking-tight" {...props} />
+      <h1 className="hidden" {...props} />
     )) as React.ComponentType<Record<string, unknown>>,
     h2: ((props: Record<string, unknown>) => (
       <h2
