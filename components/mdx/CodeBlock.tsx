@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Check, Copy } from "lucide-react";
 
 interface CodeBlockProps {
@@ -12,19 +12,15 @@ interface CodeBlockProps {
 
 export function CodeBlock({ children, ...props }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const codeRef = useRef<HTMLDivElement>(null);
   const language = props["data-language"] || "";
 
   async function copyToClipboard() {
-    const codeElement = document.querySelector(
-      `[data-copy-id="${copyId}"]`
-    );
-    const text = codeElement?.textContent ?? "";
+    const text = codeRef.current?.textContent ?? "";
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
-
-  const copyId = `code-${Math.random().toString(36).slice(2, 9)}`;
 
   return (
     <div className="group relative my-6 overflow-hidden rounded-lg border border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900">
@@ -52,7 +48,7 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
           </button>
         </div>
       )}
-      <div className="overflow-x-auto p-4" data-copy-id={copyId}>
+      <div className="overflow-x-auto p-4" ref={codeRef}>
         <pre className="text-sm leading-relaxed" {...props}>
           {children}
         </pre>
