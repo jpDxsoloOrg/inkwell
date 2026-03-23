@@ -44,7 +44,7 @@ export function PostCard({ post }: PostCardProps) {
           </Link>
         </h2>
 
-        <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+        <p className="mb-4 flex-1 text-sm leading-relaxed text-neutral-600 line-clamp-3 dark:text-neutral-400">
           {excerpt}
         </p>
 
