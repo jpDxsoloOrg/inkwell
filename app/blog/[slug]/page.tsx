@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, ArrowLeft, User } from "lucide-react";
 import { Container } from "@/components/layout";
 import { MdxContent } from "@/components/mdx/MdxContent";
@@ -116,6 +117,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </span>
           </div>
         </header>
+
+        {/* Hero cover image */}
+        {post.coverImage && (
+          <div className="mb-10 overflow-hidden rounded-xl">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              width={1200}
+              height={630}
+              className="w-full object-cover"
+              priority
+            />
+          </div>
+        )}
 
         {/* Content with TOC */}
         <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-10">
