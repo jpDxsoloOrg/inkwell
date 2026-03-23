@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import { Container } from "@/components/layout";
 import { MdxContent } from "@/components/mdx/MdxContent";
@@ -59,6 +60,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <p className="mb-8 text-lg text-neutral-600 dark:text-neutral-400">
             {project.description}
           </p>
+          {project.coverImage && (
+            <div className="mb-10 overflow-hidden rounded-xl">
+              <Image
+                src={project.coverImage}
+                alt={project.title}
+                width={1200}
+                height={630}
+                className="w-full object-cover"
+                priority
+              />
+            </div>
+          )}
           <MdxContent source={project.content} />
         </article>
 
